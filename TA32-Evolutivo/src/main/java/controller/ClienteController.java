@@ -75,8 +75,8 @@ public class ClienteController {
         String nombre = view.getNombre();
         String apellido = view.getApellido();
         String direccion = view.getDireccion();
-        int dni = Integer.parseInt(view.getDni()); // Esto puede lanzar una excepción si no es un número válido
-        Date fecha = Date.valueOf(view.getFecha()); // Esto puede lanzar una excepción si la fecha no es válida
+        int dni = Integer.parseInt(view.getDni());
+        Date fecha = Date.valueOf(view.getFecha());
 
         return new ClienteDTO(nombre, apellido, direccion, dni, fecha);
     }
