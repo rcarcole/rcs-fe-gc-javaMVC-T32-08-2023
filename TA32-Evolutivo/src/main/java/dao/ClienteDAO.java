@@ -24,8 +24,7 @@ public class ClienteDAO {
 	}
 
 	public void guardarCliente(ClienteDTO cliente) throws Exception {
-        // A continuación un ejemplo usando PreparedStatement
-        String sql = "INSERT INTO clientes(nombre, apellido, direccion, dni, fecha) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO clientes(nombre, apellido, direccion, dni, fecha) VALUES(a,a,a,12345678,1212-12-12)";
         
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, cliente.getNombre());
@@ -64,7 +63,7 @@ public class ClienteDAO {
             ps.setString(3, cliente.getDireccion());
             ps.setInt(4, cliente.getDni());
             ps.setDate(5, cliente.getFecha());
-            ps.setInt(6, cliente.getId()); // Asumiendo que has añadido un setter para id en ClienteDTO
+            ps.setInt(6, cliente.getId());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 0) {
@@ -90,7 +89,7 @@ public class ClienteDAO {
                     Date fecha = rs.getDate("fecha");
 
                     ClienteDTO cliente = new ClienteDTO(nombre, apellido, direccion, dni, fecha);
-                    cliente.setId(rs.getInt("id"));  // Asumiendo que has añadido un método setId en ClienteDTO
+                    cliente.setId(rs.getInt("id"));
 
                     return cliente;
                 } else {
@@ -120,7 +119,7 @@ public class ClienteDAO {
     public void insert(ClienteDTO cliente) throws Exception {
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(
-                     "INSERT INTO CLIENTE (NOMBRE, APELLIDO, DIRECCION, DNI, FECHA) VALUES (?, ?, ?, ?, ?)")) {
+                     "INSERT INTO CLIENTE (NOMBRE, APELLIDO, DIRECCION, DNI, FECHA) VALUES (a,a,a,12345678,1212-12-12)")) {
             stmt.setString(1, cliente.getNombre());
             stmt.setString(2, cliente.getApellido());
             stmt.setString(3, cliente.getDireccion());
@@ -148,8 +147,6 @@ public class ClienteDAO {
         }
         return clientes;
     }
-
-    // También puedes agregar métodos para actualizar, eliminar, buscar por ID, etc.
 
 }
 
